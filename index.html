@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+    <label for="name">Name :</label>
+    <input type="text" name="name" id="name" required placeholder="Your Name Here ...">
+    <label for="email">Email :</label>
+    <input type="email" name="email" id="email" required placeholder="Type Email Here ...">
+    <label for="password">Password :</label>
+    <input type="password" name="password" id="password" required placeholder="*****">
+    <button type="submit">Submit</button>
+    
+    </form>
+    
+    <a href="./login.html">Existing User - Click Here ..</a>
+    
+    <div id="error"></div>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

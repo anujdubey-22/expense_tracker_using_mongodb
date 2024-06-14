@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="expenseHandler(event)">
+        <label for="Expenseamount">Choose expenseamount</label>
+        <input type="text" id="Expenseamount">
+        <label for="Description">Choose description</label>
+        <input type="text" id="Description">
+        <label for="Category">Choose category</label>
+        <select name="Category" id="Category">
+            <option value="fuel">fuel</option>
+            <option value="food">food</option>
+            <option value="electricity">electricity</option>
+            <option value="movie">movie</option>
+            <option value="bill">bill</option>
+        </select>
+        <button type="submit">add expense</button>
+        <div id="message"></div>
+    </form>
+    <button type="button" id="board" style="display: none;" onclick="showLeaderBoard()">Show Leader Borad</button>
+    <button id="buyPremium" type="submit">buy Premium</button>
+    <!-- <button type="button" id="report" style="display: none;"  onclick="showReport()">Show Report Generation</button> -->
+    <button onclick="download()" style="display: none;" id="downloadexpense">Download File</button>
+    <button onclick="showDownloadedFiles()" style="display: none;" id="downloadedfiles">Show All Downloaded Files</button>
+    <h2>Expenses</h2>
+    <ul id="list">
+    </ul>
+    <ul id="leaderboard">
+    </ul>
+    <ul id="showDownload">
+    </ul>
+    <ul id="reportList">
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"> </script>
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
