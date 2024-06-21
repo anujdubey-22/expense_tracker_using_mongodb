@@ -6,8 +6,7 @@ let page = 1;
 // document.getElementById('downloadexpense').addEventListener('click',download());
 // document.getElementById('downloadedfiles').addEventListener('click',showDownloadedFiles());
 
-
-async function getData(page,limit) {
+async function getData(page, limit) {
   try {
     //console.log(page, "pageeeeeeeeeeeeee");
     var token = localStorage.getItem("token");
@@ -30,25 +29,27 @@ async function getData(page,limit) {
     if (localStorage.getItem("buttonHidden") === "true") {
       document.getElementById("buyPremium").style.display = "none";
       document.getElementById("board").style.display = "block";
-      document.getElementById("report").style.display = "block";
+      document.getElementById("downloadexpense").style.display = "block";
+      document.getElementById("downloadedfiles").style.display = "block";
+
       let pElement = document.getElementById("message");
       pElement.innerHTML = "You are a Premium User now";
     }
     let totalPages = response.data.totalPages;
-    console.log(response,'response')
+    //console.log(response, "response");
     var list = document.getElementById("list");
     list.innerHTML = "";
     for (let expense of response.data.expenses) {
       //console.log(expense);
       showExpense(expense, page, totalPages);
     }
-    showPaginationButton(page, totalPages,limit);
+    showPaginationButton(page, totalPages, limit);
   } catch (error) {
     console.log(error, "error in getting data in main.js");
   }
 }
 
-async function showPaginationButton(currentPage, totalPages,limit) {
+async function showPaginationButton(currentPage, totalPages, limit) {
   var list = document.getElementById("list");
   // Display current page and total pages
   const pageInfo = document.createElement("p");
@@ -90,7 +91,7 @@ async function showPaginationButton(currentPage, totalPages,limit) {
   prevPageBtn.addEventListener("click", function () {
     if (currentPage > 1) {
       currentPage--;
-      getData(currentPage,limit);
+      getData(currentPage, limit);
 
       // Update page info
       document.querySelector(
@@ -105,7 +106,7 @@ async function showPaginationButton(currentPage, totalPages,limit) {
   nextPageBtn.addEventListener("click", function () {
     if (currentPage < totalPages) {
       currentPage++;
-      getData(currentPage,limit);
+      getData(currentPage, limit);
 
       // Update page info
       document.querySelector(
@@ -122,7 +123,6 @@ async function forgotPasswordHandler() {
   console.log("click in forgotpasswordhandler in main js");
   window.location.href = "./forgot.html";
 }
-
 
 async function showLeaderBoard() {
   //console.log("show Leader btn clicked");
@@ -145,13 +145,13 @@ async function showLeaderBoard() {
         }`
       )
     );
-    div.style.color='green';
+    div.style.color = "green";
     //leaderEle.innerHTML += `Name - ${item} Total Expense - ${userArr.data.data[item]}`;
     leaderEle.appendChild(div);
   }
 }
 
-document.getElementById('buyPremium').addEventListener('click',buyPremium);
+document.getElementById("buyPremium").addEventListener("click", buyPremium);
 
 async function buyPremium() {
   try {
@@ -181,13 +181,13 @@ async function buyPremium() {
         );
         //console.log(output);
         alert("you are premium user now");
+
         localStorage.setItem("token", output.data.token);
         document.getElementById("buyPremium").style.display = "none";
         document.getElementById("board").style.display = "block";
-        document.getElementById("report").style.display = "block";
-        document
-          .getElementById("board")
-          .addEventListener("click", showLeaderBoard());
+        document.getElementById("downloadexpense").style.display = "block";
+        document.getElementById("downloadedfiles").style.display = "block";
+
         // Store hidden state in local storage
         localStorage.setItem("buttonHidden", "true");
         let pElement = document.getElementById("message");
@@ -261,7 +261,7 @@ function showExpense(expenseData, currentPage, totalPages) {
 
   async function clicked(e) {
     try {
-//console.log(e.target,_id)
+      //console.log(e.target,_id)
 
       //console.log("hi", e.target, id);
       var li = e.target.parentElement;
@@ -430,7 +430,7 @@ async function showDownloadedFiles() {
     );
     //console.log(allfFiles.data["allFiles"],'allfiles')
     if (allfFiles) {
-      let showDownload = document.getElementById('showDownload');
+      let showDownload = document.getElementById("showDownload");
       let showDownloadedFilesInScreen = document.createElement("ul");
       showDownloadedFilesInScreen.innerHTML = `<h2>All Downloaded Files Till Now</h2>`;
       for (let files of allfFiles.data["allFiles"]) {

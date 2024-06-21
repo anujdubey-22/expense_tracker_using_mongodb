@@ -98,7 +98,7 @@ exports.postValidate = async (req, res, next) => {
     const { email, password } = req.body;
     //console.log(email,password);
     const data = await User.findOne({ email: email });
-    console.log(data, "data in postvalidate in expense controller");
+    //console.log(data, "data in postvalidate in expense controller");
     if (data === null) {
       return res.status(404).json("email does not exist");
     }
@@ -145,7 +145,7 @@ exports.postExpense = async (req, res, next) => {
       category: category,
       session: session,
     });
-    console.log(data, "data after creating expense table in app.js");
+    //console.log(data, "data after creating expense table in app.js");
 
     // Update the total amount in the User record
     const userFound = await User.findById(user.userId).session(session);
@@ -313,15 +313,17 @@ exports.postUpdatetransactions = async (req, res, next) => {
 
     const user = await User.findByIdAndUpdate(req.user.userId, {
       isPremium: true,
-    });
-
+    },{new: true});
+    console.log(user,'user');
+    console.log(user.isPremium,'userpremium');
     //const user = await User.findOne({ where: { id: req.user.userId } });
     //console.log(user.id,user.isPremium,'user id and isPremium in postUpdatetransactions in Controllerline 183');
-    const token = generateToken(user.id, user.isPremium);
+    
     //const response = req.user.update({ isPremium: true });
 
     // Concurrently await all promises using Promise.all
-    await Promise.all([orderUpdate, response]);
+    await Promise.all([orderUpdate, user]);
+    const token = generateToken(user.id, user.isPremium);
 
     return res.status(201).json({
       success: true,
