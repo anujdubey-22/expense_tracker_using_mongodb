@@ -9,15 +9,15 @@ const Forgotpassword = require('./models/forgotpassword');
 const Router = require('./routes/expense');
 const forgotrouter = require('./routes/forgotpassword');
 const premiumRoutes = require('./routes/premium');
-const sequelize = require('./database');
+const sequelize = require('./utils/database');
 const Downloadedfiles = require("./models/downlodedfiles");
 const helmet = require('helmet');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
-const mongoose = require('./database');
+const mongoose = require('./utils/database');
 
-const accessLogstream = fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
+const accessLogstream = fs.createWriteStream(path.join(__dirname,'./logs/access.log'),{flags:'a'});
 
 const app = express();
 app.use(cors());

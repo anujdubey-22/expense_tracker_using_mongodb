@@ -6,7 +6,7 @@ const Expense = require("../models/expense");
 const Order = require("../models/order");
 const jwt = require("jsonwebtoken");
 const Razorpay = require("razorpay");
-const sequelize = require("../database");
+const sequelize = require("../utils/database");
 const Downloadedfiles = require("../models/downlodedfiles");
 const mongoose = require("mongoose");
 
